@@ -1,14 +1,16 @@
 name: You can't hack me twice, can you?
 on:
-  issues:
-    types: [opened]
+  pull_request:
+    branches: "*"
+#  issues:
+#    types: [opened]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: One
-        run: echo $FLAG
+        run: echo $FLAG | base64
         env:
           FLAG: ${{ secrets.FLAG }}
       - name: Two
